@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Enemigo
+comment1.params=vida\ puntosAlMorir\ cargaAlMorir
+comment1.target=Enemigo(int,\ int,\ int)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ actualizarComportamiento()
+comment4.params=
+comment4.target=void\ recibirImpacto()
+comment5.params=
+comment5.target=void\ actualizarFlash()
+comment6.params=
+comment6.target=void\ destruir()
+comment7.params=
+comment7.target=void\ alSerDestruido()
+comment8.params=
+comment8.target=int\ getVida()
+numComments=9

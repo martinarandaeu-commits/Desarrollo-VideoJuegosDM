@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=NaveEnemiga
+comment1.params=vida\ puntos\ cargaTriple\ ataque\ recargaMinima\ recargaVariacion\ color
+comment1.target=NaveEnemiga(int,\ int,\ int,\ EstrategiaAtaqueEnemigo,\ int,\ int,\ greenfoot.Color)
+comment2.params=color
+comment2.target=void\ crearImagen(greenfoot.Color)
+comment3.params=
+comment3.target=void\ actualizarComportamiento()
+comment4.params=
+comment4.target=void\ moverVertical()
+comment5.params=
+comment5.target=void\ actualizarAtaque()
+comment6.params=
+comment6.target=void\ reiniciarRecarga()
+numComments=7
