@@ -9,6 +9,10 @@ public class Espacio extends World {
     private int tiempoPartida = 0;
 
     private int nivel = 1;
+    
+    private int contadorPowerUp = 0;
+    
+    private int proximoPowerUp = 700;
 
     public Espacio() {
 
@@ -28,9 +32,12 @@ public class Espacio extends World {
 
         pool =
             new PoolDeBalas(30);
+            
+        Nave nave =
+            new Nave(pool);
 
         addObject(
-            new Nave(pool),
+            nave,
             60,
             getHeight() / 2
         );
@@ -45,6 +52,12 @@ public class Espacio extends World {
             new BarraTriple(),
             120,
             getHeight() - 28
+        );
+        
+        addObject(
+            new IndicadorEscudo(nave),
+            getWidth() - 85,
+            50
         );
 
         showText(
@@ -99,6 +112,8 @@ public class Espacio extends World {
         tiempoPartida++;
 
         actualizarNivel();
+        
+        actualizarPowerUp();
 
         contadorAparicion++;
 
@@ -188,5 +203,34 @@ public class Espacio extends World {
             getWidth() - 25,
             y
         );
+    }
+    
+    private void actualizarPowerUp() {
+    
+        contadorPowerUp++;
+    
+        if (contadorPowerUp >= proximoPowerUp) {
+    
+            int y =
+                50 +
+                Greenfoot.getRandomNumber(
+                    getHeight() - 100
+                );
+    
+            addObject(
+                new PowerUpEscudo(),
+                getWidth() - 30,
+                y
+            );
+    
+            contadorPowerUp = 0;
+    
+            // Proxima aparicion aleatoria
+            proximoPowerUp =
+                700 +
+                Greenfoot.getRandomNumber(
+                    500
+                );
+        }
     }
 }

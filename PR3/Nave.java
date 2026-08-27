@@ -12,6 +12,13 @@ public class Nave extends Actor {
 
     // Mensajes temporales
     private int tiempoMensaje = 0;
+    
+    // Sistema de escudo temporal
+    private boolean escudoActivo = false;
+    private int tiempoEscudo = 0;
+
+    // Aproximadamente 6 segundos
+    private static final int DURACION_ESCUDO = 360;
 
     public Nave(PoolDeBalas pool) {
         this.pool = pool;
@@ -51,6 +58,8 @@ public class Nave extends Actor {
         if (gm.isJuegoTerminado()) {
             return;
         }
+        
+        actualizarEscudo();
 
         // Controla la duracion del power-up
         gm.actualizarTriple();
@@ -158,8 +167,59 @@ public class Nave extends Actor {
             }
         }
     }
+    
+        public void activarEscudo() {
+    
+        escudoActivo = true;
+        tiempoEscudo = DURACION_ESCUDO;
+    
+        mostrarMensaje(
+            "SHIELD ON!",
+            80
+        );
+    }
+    
+    private void actualizarEscudo() {
+    
+        if (!escudoActivo) {
+            return;
+        }
+    
+        tiempoEscudo--;
+    
+        if (tiempoEscudo <= 0) {
+    
+            tiempoEscudo = 0;
+            escudoActivo = false;
+    
+            mostrarMensaje(
+                "SHIELD OFF",
+                60
+            );
+        }
+    }
+    
+    public boolean isEscudoActivo() {
+        return escudoActivo;
+    }
+    
+    public int getProgresoEscudo() {
+    
+        if (!escudoActivo) {
+            return 0;
+        }
+    
+        return (
+            tiempoEscudo * 100
+        ) / DURACION_ESCUDO;
+    }
 
     public void morir() {
+        
+        if (escudoActivo) {
+        return;
+        }
+        
         GameManager gm = GameManager.getInstancia();
 
         if (gm.isJuegoTerminado()) {
