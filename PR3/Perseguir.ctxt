@@ -1,9 +1,5 @@
-/**
- * Write a description of class Observador here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public interface Observador {
-    void actualizar(int puntos);
-}
+#BlueJ class context
+comment0.target=Perseguir
+comment1.params=enemigo
+comment1.target=Estado\ actuar(Enemigo)
+numComments=2

@@ -1,33 +1,21 @@
-import greenfoot.*;
-
-public class Marcador
-    extends Actor
-    implements Observador {
-
-    public Marcador() {
-
-        GameManager
-            .getInstancia()
-            .suscribir(this);
-
-        actualizar(
-            GameManager
-                .getInstancia()
-                .getPuntos()
-        );
-    }
-
-    public void actualizar(
-        int puntos
-    ) {
-
-        setImage(
-            new GreenfootImage(
-                "Puntos: " + puntos,
-                24,
-                Color.WHITE,
-                null
-            )
-        );
-    }
-}
+#BlueJ class context
+comment0.target=Nave
+comment1.params=pool
+comment1.target=Nave(PoolDeBalas)
+comment2.params=
+comment2.target=void\ crearImagenNave()
+comment3.params=
+comment3.target=void\ act()
+comment4.params=
+comment4.target=void\ mover()
+comment5.params=
+comment5.target=void\ cambiarArma()
+comment6.params=
+comment6.target=void\ disparar()
+comment7.params=mensaje\ duracion
+comment7.target=void\ mostrarMensaje(java.lang.String,\ int)
+comment8.params=
+comment8.target=void\ actualizarMensaje()
+comment9.params=
+comment9.target=void\ morir()
+numComments=10

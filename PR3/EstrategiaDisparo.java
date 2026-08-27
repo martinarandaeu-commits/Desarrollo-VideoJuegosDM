@@ -1,5 +1,11 @@
-#BlueJ class context
-comment0.target=EstrategiaDisparo
-comment1.params=nave\ pool
-comment1.target=void\ disparar(greenfoot.Actor,\ PoolDeBalas)
-numComments=2
+/**
+ * Write a description of class EstrategiaDisparo here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+import greenfoot.*;
+
+public interface EstrategiaDisparo {
+    void disparar(Actor nave, PoolDeBalas pool);
+}

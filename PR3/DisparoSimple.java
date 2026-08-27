@@ -1,5 +1,23 @@
-#BlueJ class context
-comment0.target=DisparoSimple
-comment1.params=nave\ pool
-comment1.target=void\ disparar(greenfoot.Actor,\ PoolDeBalas)
-numComments=2
+/**
+ * Write a description of class DisparoSimple here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+import greenfoot.*;
+
+public class DisparoSimple implements EstrategiaDisparo {
+
+    public void disparar(Actor nave, PoolDeBalas pool) {
+        Bala b = pool.obtener();
+
+        if (b != null) {
+            b.activar(
+                nave.getWorld(),
+                nave.getX() + 20,
+                nave.getY(),
+                0
+            );
+        }
+    }
+}
