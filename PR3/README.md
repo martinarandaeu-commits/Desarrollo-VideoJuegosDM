@@ -255,6 +255,35 @@ Recompensa:
 - 50 puntos.
 - 40 % de carga del Triple Shot.
 
+# Power-Up de Escudo de Energía
+
+Como mejora adicional se incorporó un nuevo Power-Up de escudo que aparece
+de manera periódica y aleatoria durante la partida.
+
+Al recoger el Power-Up:
+
+- La nave activa un escudo temporal.
+- Se muestra el mensaje `SHIELD ON!`.
+- El jugador obtiene inmunidad durante aproximadamente 6 segundos.
+- El escudo protege contra asteroides.
+- Protege contra proyectiles enemigos simples y triples.
+- Protege contra el láser de los enemigos especiales.
+- Se incorpora un indicador visual con el porcentaje de duración restante.
+- Al finalizar el tiempo aparece `SHIELD OFF` y el jugador vuelve a ser vulnerable.
+
+Para implementar esta funcionalidad se agregaron las clases:
+
+- `PowerUpEscudo`
+- `IndicadorEscudo`
+
+Además, se modificaron las clases `Nave` y `Espacio` para administrar
+la activación del escudo, su duración, el indicador visual y la aparición
+aleatoria de los Power-Ups.
+
+Esta mejora agrega una nueva decisión estratégica durante la partida,
+ya que el jugador puede aprovechar temporalmente el escudo para atravesar
+situaciones de mayor peligro y enfrentarse a ataques de enemigos más complejos.
+
 ---
 
 # Sistema de vida para enemigos
@@ -536,6 +565,8 @@ Actor
 ├── BalaEnemiga
 ├── Marcador
 ├── BarraTriple
+├── IndicadorEscudo
+├── PowerUpEscudo
 ├── Estrella
 ├── AlertaLaser
 ├── RayoLaser
@@ -620,6 +651,7 @@ GAME OVER
 | Creación directa de enemigos | `FabricaEnemigos` |
 | State con Avanzar y Zigzag | Se añadió el estado Perseguir |
 | Strategy solo para el jugador | Strategy también para ataques enemigos |
+| Sin sistema de protección temporal | Power-Up de escudo con inmunidad temporal e indicador de duración |
 
 ---
 
@@ -654,10 +686,13 @@ Las funcionalidades implementadas actualmente permiten:
 - Jugar una partida completa.
 - Obtener puntos.
 - Cargar y utilizar Triple Shot.
+- Recoger y utilizar el Power-Up de escudo temporal.
+- Visualizar el porcentaje restante del escudo.
 - Combatir diferentes tipos de enemigos.
 - Recibir ataques enemigos.
 - Enfrentar enemigos especiales de láser.
 - Aumentar progresivamente la dificultad.
 - Finalizar la partida mediante Game Over.
+
 
 El proyecto continuará siendo ampliado mediante futuros avances y Pull Requests.

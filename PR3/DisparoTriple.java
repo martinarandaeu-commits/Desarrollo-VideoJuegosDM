@@ -1,5 +1,27 @@
-#BlueJ class context
-comment0.target=DisparoTriple
-comment1.params=nave\ pool
-comment1.target=void\ disparar(greenfoot.Actor,\ PoolDeBalas)
-numComments=2
+/**
+ * Write a description of class DisparoTriple here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+import greenfoot.*;
+
+public class DisparoTriple implements EstrategiaDisparo {
+
+    public void disparar(Actor nave, PoolDeBalas pool) {
+        int[] angulos = {-15, 0, 15}; // abanico de tres balas
+
+        for (int ang : angulos) {
+            Bala b = pool.obtener();
+
+            if (b != null) {
+                b.activar(
+                    nave.getWorld(),
+                    nave.getX() + 20,
+                    nave.getY(),
+                    ang
+                );
+            }
+        }
+    }
+}
