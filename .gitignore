@@ -1,0 +1,13 @@
+# Java compilado
+*.class
+
+# Archivos generados por Greenfoot / BlueJ
+*.ctxt
+
+# Archivos temporales del sistema
+*.log
+.DS_Store
+Thumbs.db
+
+# Backups y paquetes locales
+*.zip
