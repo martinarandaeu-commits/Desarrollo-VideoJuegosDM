@@ -8,7 +8,7 @@ direccion de movimiento (WASD).
 ## Como abrirlo
 
 1. Abre Greenfoot.
-2. `Escenario -> Abrir` y selecciona esta carpeta (`Rougelike GAME`).
+2. `Escenario -> Abrir` y selecciona esta carpeta (`PR5`).
    - Si tu version de Greenfoot no reconoce el `project.greenfoot`
      incluido, crea un `Nuevo escenario` vacio en esta misma carpeta:
      Greenfoot respetara los `.java` y la carpeta `images` que ya
@@ -28,6 +28,12 @@ direccion de movimiento (WASD).
 
 La municion se regenera lentamente sola. El dinero se gana matando
 zombis. Al llegar a 0 de vida termina la partida.
+
+Los valores de municion, dano y ciclos entre disparos estan reunidos
+en constantes al inicio de `Jugador.java`, para facilitar su ajuste.
+La pistola consume 1 de municion y hace 22 de dano; la escopeta consume
+3 y dispara tres proyectiles de 14 de dano cada uno. La capacidad es
+de 20 y se recupera 1 de municion cada 70 ciclos mientras no este llena.
 
 ## Estructura del codigo
 

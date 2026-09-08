@@ -29,24 +29,31 @@ public class Jugador extends Soldado
         ESCOPETA
     }
 
+    private static final int MUNICION_MAXIMA = 20;
+    private static final int CICLOS_POR_REGENERACION = 70;
+    private static final int COSTO_PISTOLA = 1;
+    private static final int COSTO_ESCOPETA = 3;
+    private static final int DANIO_PISTOLA = 22;
+    private static final int DANIO_ESCOPETA = 14;
+    private static final int CICLOS_ENTRE_DISPAROS_PISTOLA = 14;
+    private static final int CICLOS_ENTRE_DISPAROS_ESCOPETA = 32;
+
     private Arma arma = Arma.PISTOLA;
 
-    private int municion = 20;
-    private final int municionMaxima = 20;
-    private int contadorRegenMunicion = 0;
-    private final int ciclosPorRegenMunicion = 70;
+    private int municion = MUNICION_MAXIMA;
+    private int ciclosDesdeRegeneracion = 0;
 
-    private int cooldownDisparo = 0;
+    private int ciclosHastaProximoDisparo = 0;
 
     // Ultima direccion valida (para disparar aunque el jugador este quieto)
-    private int dirX = 0;
-    private int dirY = -1;
+    private int direccionDisparoX = 0;
+    private int direccionDisparoY = -1;
 
     public Jugador()
     {
         super(100, 5);
         setImage(FabricaImagenes.jugador());
-        mirarHacia(dirX, dirY);
+        mirarHacia(direccionDisparoX, direccionDisparoY);
     }
 
     public void act()
@@ -55,9 +62,9 @@ public class Jugador extends Soldado
         controlarArma();
         controlarDisparo();
         regenerarMunicion();
-        if (cooldownDisparo > 0)
+        if (ciclosHastaProximoDisparo > 0)
         {
-            cooldownDisparo--;
+            ciclosHastaProximoDisparo--;
         }
     }
 
@@ -76,8 +83,8 @@ public class Jugador extends Soldado
             return;
         }
 
-        dirX = dx;
-        dirY = dy;
+        direccionDisparoX = dx;
+        direccionDisparoY = dy;
         mirarHacia(dx, dy);
 
         // Normalizar para que la diagonal no sea mas rapida que recto
@@ -107,12 +114,12 @@ public class Jugador extends Soldado
     private void controlarDisparo()
     {
         boolean quiereDisparar = Greenfoot.isKeyDown("space") || Greenfoot.mouseClicked(null);
-        if (!quiereDisparar || cooldownDisparo > 0)
+        if (!quiereDisparar || ciclosHastaProximoDisparo > 0)
         {
             return;
         }
 
-        int costo = (arma == Arma.PISTOLA) ? 1 : 3;
+        int costo = (arma == Arma.PISTOLA) ? COSTO_PISTOLA : COSTO_ESCOPETA;
         if (municion < costo)
         {
             return;
@@ -124,21 +131,21 @@ public class Jugador extends Soldado
 
     private void disparar()
     {
-        double baseAngulo = Math.atan2(dirY, dirX);
+        double baseAngulo = Math.atan2(direccionDisparoY, direccionDisparoX);
 
         if (arma == Arma.PISTOLA)
         {
-            crearBala(baseAngulo, 22);
-            cooldownDisparo = 14;
+            crearBala(baseAngulo, DANIO_PISTOLA);
+            ciclosHastaProximoDisparo = CICLOS_ENTRE_DISPAROS_PISTOLA;
         }
         else
         {
             // Escopeta: tres proyectiles en abanico
             double abertura = Math.toRadians(14);
-            crearBala(baseAngulo - abertura, 14);
-            crearBala(baseAngulo, 14);
-            crearBala(baseAngulo + abertura, 14);
-            cooldownDisparo = 32;
+            crearBala(baseAngulo - abertura, DANIO_ESCOPETA);
+            crearBala(baseAngulo, DANIO_ESCOPETA);
+            crearBala(baseAngulo + abertura, DANIO_ESCOPETA);
+            ciclosHastaProximoDisparo = CICLOS_ENTRE_DISPAROS_ESCOPETA;
         }
     }
 
@@ -153,15 +160,15 @@ public class Jugador extends Soldado
 
     private void regenerarMunicion()
     {
-        if (municion >= municionMaxima)
+        if (municion >= MUNICION_MAXIMA)
         {
             return;
         }
-        contadorRegenMunicion++;
-        if (contadorRegenMunicion >= ciclosPorRegenMunicion)
+        ciclosDesdeRegeneracion++;
+        if (ciclosDesdeRegeneracion >= CICLOS_POR_REGENERACION)
         {
             municion++;
-            contadorRegenMunicion = 0;
+            ciclosDesdeRegeneracion = 0;
         }
     }
 
@@ -172,7 +179,7 @@ public class Jugador extends Soldado
 
     public int getMunicionMaxima()
     {
-        return municionMaxima;
+        return MUNICION_MAXIMA;
     }
 
     public Arma getArma()
