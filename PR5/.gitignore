@@ -1,0 +1,7 @@
+# Artefactos generados por Greenfoot/BlueJ al compilar o ejecutar
+*.class
+*.ctxt
+
+# Archivos de SO
+.DS_Store
+Thumbs.db
